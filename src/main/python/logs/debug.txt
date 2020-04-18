@@ -1,0 +1,1 @@
+DEBUG: [ffmpeg] Adding metadata to '/home/stranger/Desktop/PSY - GENTLEMAN M_V.mp3'
