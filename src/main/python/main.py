@@ -4,16 +4,14 @@ from PySide2.QtCore import QThreadPool, QRegExp, QUrl, Slot
 from PySide2.QtGui import QRegExpValidator
 from PySide2.QtNetwork import QNetworkRequest, QNetworkAccessManager, QNetworkReply
 from youtube_dl import YoutubeDL
+import sys
 from UI.gui import Ui_MainWindow
-import requests
-import re
 
 from dialogs.success import SuccessDialog
 from dialogs.warning import WarningDialog
 from threads.worker import MyWorker
+from utils.utils import verify_url, verify_spelling
 from conf import settings
-
-import sys
 
 
 class MyMainWindow(QMainWindow):
@@ -59,12 +57,9 @@ class MyMainWindow(QMainWindow):
         self.button_download.setDisabled(True)
         self.button_download.clicked.connect(self.run)
 
-        # other stuff
-        self.error_msg = None
-
     def paste_to_url_line(self):
         text = QApplication.clipboard().text()
-        if self.validate_url_text(text):
+        if verify_spelling(text):
             self.line_addURL.setText(text)
         else:
             self.warning_dialog(message='Please copy a valid URL!')
@@ -79,7 +74,7 @@ class MyMainWindow(QMainWindow):
 
     def get_url_line(self):
         url = self.line_addURL.text()
-        if self.check_link_exists(url):
+        if verify_url(url):
             return url
 
     def get_browse_line(self):
@@ -119,7 +114,6 @@ class MyMainWindow(QMainWindow):
 
     def download_mp3(self, progress_callback):
         """Do some process here"""
-        print('helloo')
 
         class YdlLogger(object):
             @staticmethod
@@ -179,21 +173,16 @@ class MyMainWindow(QMainWindow):
 
         # reset components
         self.enable_components()
-        self.button_download.setText('Download')
-        self.progress_bar.setValue(0)
 
     def warning_dialog(self, message):
+        self.disable_components()
+
         dialog = WarningDialog(message)
         dialog.show()
         dialog.exec_()
 
-        # clear error_msg
-        self.error_msg = None
-
         # reset components
         self.enable_components()
-        self.button_download.setText('Download')
-        self.progress_bar.setValue(0)
 
     def disable_components(self):
         self.button_download.setDisabled(True)
@@ -208,20 +197,8 @@ class MyMainWindow(QMainWindow):
         self.button_addURL.setDisabled(False)
         self.line_browse.setDisabled(False)
         self.line_addURL.setDisabled(False)
-
-    @staticmethod
-    def validate_url_text(text):
-        # noinspection All
-        regex = re.compile(r'^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+')
-        return re.match(regex, text) is not None
-
-    @staticmethod
-    def check_link_exists(link):
-        request = requests.get(link)
-        if request.status_code == 200:
-            return True
-        else:
-            return False
+        self.button_download.setText('Download')
+        self.progress_bar.setValue(0)
 
     # noinspection All
     @Slot()
