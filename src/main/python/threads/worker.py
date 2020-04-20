@@ -50,8 +50,6 @@ class MyWorker(QRunnable):
         finally:
             if result is not None:
                 error_msg = "Error occured!"
-                print(result)
-                # print(result.args)
                 if type(result) == tuple:
                     if isinstance(result.args, Iterable):
                         if 'unavailable' in result.args[0]:
