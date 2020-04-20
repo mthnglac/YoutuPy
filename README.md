@@ -33,7 +33,7 @@ Support
 If you need assistance or you have a question, you can ask for help on discord or join us on twitter:
 
 * **[Discord](https://discord.gg/cuHwWeg)** (English, Turkish)
-* **[Twitter](https://github.com/mthnglac/YoutuPy/releases/latest)**
+* **[Twitter](https://twitter.com/YoutuPyApp)**
 
 
 ## Supported systems
