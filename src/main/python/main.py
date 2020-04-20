@@ -140,7 +140,7 @@ class MyMainWindow(QMainWindow):
 
         ydl_opts = {
             'format': 'bestaudio/best',  # the format that it can be
-            'logger': YdlLogger(),  # this is used to log errors and such
+            # 'logger': YdlLogger(),  # this is used to log errors and such
             'postprocessors': [
                 {
                     'key': 'FFmpegExtractAudio',

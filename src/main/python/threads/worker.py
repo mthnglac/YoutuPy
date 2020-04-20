@@ -1,3 +1,4 @@
+from collections.abc import Iterable
 from PySide2.QtCore import QObject, Signal, QRunnable, Slot
 
 
@@ -49,14 +50,17 @@ class MyWorker(QRunnable):
         finally:
             if result is not None:
                 error_msg = "Error occured!"
-                # print(result)
+                print(result)
                 # print(result.args)
-                if type(result.args) == tuple:
-                    if 'unavailable' in result.args[0]:
-                        error_msg = result.args[0].split('said: ', 1)[1]
-                    elif 'Unsupported' in result.args[0]:
-                        error_msg = 'Unsupported URL'
-                    self.emitter.unfinished.emit(error_msg)
+                if type(result) == tuple:
+                    if isinstance(result.args, Iterable):
+                        if 'unavailable' in result.args[0]:
+                            error_msg = result.args[0].split('said: ', 1)[1]
+                        elif 'Unsupported' in result.args[0]:
+                            error_msg = 'Unsupported URL'
+                        self.emitter.unfinished.emit(error_msg)
+                    else:
+                        self.emitter.unfinished.emit(result.args)
                 else:
                     self.emitter.unfinished.emit(result.args)
             else:
