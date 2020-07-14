@@ -20,11 +20,16 @@ The source code is published under GPLv3, the license is available [here][licens
 
 Note: This application requires FFmpeg multimedia framework, which you can [download here](https://ffmpeg.org/download.html).
 
-Note: If you're in Windows, you need to path your "api-ms-win-crt-multibyte-l1-1-0.dll" file. [more info](https://www.intenseclick.com/api-ms-win-crt-runtime-l1-1-0-dll-is-missing-error/).
-
 ## Features
 
 - Supports single videos, playlists, channels, and search queries
+- Output format: mp3
+- Automatic media tagging for audio downloads
+
+## for Developers (windowsOS)
+
+- You need to path your "api-ms-win-crt-multibyte-l1-1-0.dll" file. [more info](https://www.intenseclick.com/api-ms-win-crt-runtime-l1-1-0-dll-is-missing-error/).
+- If you get "makensis.exe" error, install NSIS and path your its source folder. [more info](https://nsis.sourceforge.io/Download).
 - Output format: mp3
 - Automatic media tagging for audio downloads
 
