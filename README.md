@@ -30,9 +30,6 @@ Note: This application requires FFmpeg multimedia framework, which you can [down
 
 - You need to path your "api-ms-win-crt-multibyte-l1-1-0.dll" file. [more info](https://www.intenseclick.com/api-ms-win-crt-runtime-l1-1-0-dll-is-missing-error/).
 - If you get "makensis.exe" error, install NSIS and path your its source folder. [more info](https://nsis.sourceforge.io/Download).
-- Output format: mp3
-- Automatic media tagging for audio downloads
-
 
 Support
 =======
