@@ -6,12 +6,6 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-fbs = "*"
-pyside2 = "*"
-youtube-dl = "*"
-requests = "*"
-pynvim = "*"
-jedi = "*"
 
 [requires]
-python_version = "3.6.8"
+python_version = "3.8"

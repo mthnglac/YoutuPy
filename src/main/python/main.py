@@ -25,11 +25,10 @@ class MyMainWindow(QMainWindow):
 
         # check network setup
         self.net_manager = QNetworkAccessManager()
-        self.test_url = QUrl("https://www.google.com/")
+        self.test_url = QUrl("http://www.google.com/")
         self.test_req = QNetworkRequest(self.test_url)
         self.test_res = self.net_manager.get(self.test_req)
         # self.test_res.finished.connect(self.processRes)
-        # noinspection All
         self.test_res.error.connect(self.processErr)
         self.test_msg = QMessageBox()
 
