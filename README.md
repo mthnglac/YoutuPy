@@ -42,8 +42,7 @@ If you need assistance or you have a question, you can ask for help on discord o
 
 ## Supported systems
 
-* Ubuntu 18.04 - Ubuntu 19.10
-* Mint 19.2 - Mint 19.3
+* Windows 10
 
 ## Third-party
 
